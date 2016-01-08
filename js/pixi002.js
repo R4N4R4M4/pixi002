@@ -1,3 +1,9 @@
+var renderer;
+var stage;
+var width,height;
+var ball;
+var dx=5;
+
 function pixi002()
   {
 	app.receivedEvent('deviceready');
@@ -7,22 +13,32 @@ function pixi002()
 	height = window.outerHeight/2;
 	
 	var rendererOptions = {antialias:true, transparent:false, resolution:1,autoresize:true,backgroundColor: 0x008000}
-	var renderer = PIXI.autoDetectRenderer(width, height, rendererOptions);
+	renderer = PIXI.autoDetectRenderer(width, height, rendererOptions);
 	document.getElementById("test").appendChild(renderer.view);
-	var stage = new PIXI.Container();
+	stage = new PIXI.Container();
 	
-	var ball = new PIXI.Graphics();
+	ball = new PIXI.Graphics();
 	ball.beginFill(0xff2200); // Red
-	ball.drawCircle(width/2, height/2, 40); // drawCircle(x, y, radius)
+	ball.drawCircle(0, 0, 40); // drawCircle(x, y, radius)
+	ball.position.x = width/2;
+	ball.position.y = height/2;
 	ball.endFill();
 	stage.addChild(ball);
 	renderer.render(stage);
-	requestAnimFrame(animate);
+	animate();
 	}
 
-function animate() {requestAnimFrame(animate); renderer.render(stage);}
+function animate() 
+	{
+	ball.position.x+=dx;
+	if(ball.position.x>width+40)ball.position.x=-40;
+	else if(ball.position.x<-40)ball.position.x=width+40;
+	renderer.render(stage);
+	requestAnimationFrame(animate);
+	}
 
 function position()
 	{
 	//document.getElementById("ok").setAttribute('style','display:none;');
+	dx=-dx;
 	}
