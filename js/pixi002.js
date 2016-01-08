@@ -18,3 +18,8 @@ function pixi002()
 	stage.addChild(ball);
 	renderer.render(stage);
 	}
+
+function position()
+	{
+	//document.getElementById("ok").setAttribute('style','display:none;');
+	}
