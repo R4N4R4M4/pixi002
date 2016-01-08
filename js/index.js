@@ -34,9 +34,3 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
-
-function position()
-	{
-	//document.getElementById("ok").setAttribute('style','display:none;');
-	}
-//app.initialize();
